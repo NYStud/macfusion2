@@ -49,7 +49,9 @@ enum {
 
 + (Handle) get32BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1060
 + (Handle) get8BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
+#endif
 
 + (Handle) get8BitMaskFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
 
@@ -638,11 +640,13 @@ enum {
 	case kLarge1BitMask:
 	    hRawData = [IconFamily get1BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
 	    break;
-            
+
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1060
 	// 'icl8' 32x32 8-bit indexed image data
 	case kLarge8BitData:
 		hRawData = [IconFamily get8BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
 		break;
+#endif
 
 	// 'is32' 16x16 32-bit RGB image
 	case kSmall32BitData:
@@ -659,10 +663,12 @@ enum {
 	    hRawData = [IconFamily get1BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
 	    break;
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1060
 	// 'ics8' 16x16 8-bit indexed image data
 	case kSmall8BitData:
 		hRawData = [IconFamily get8BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
 		break;
+#endif
             
 	default:
 	    return NO;
@@ -1287,6 +1293,7 @@ enum {
     return hRawData;
 }
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1060
 + (Handle) get8BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize
 {
     Handle hRawData;
@@ -1375,6 +1382,7 @@ enum {
 	
     return hRawData;
 }
+#endif
 
 + (Handle) get8BitMaskFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize
 {
