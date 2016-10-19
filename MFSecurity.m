@@ -345,7 +345,7 @@ SInt32 showDialogForPasswordQuery(MFFilesystem* fs, BOOL* savePassword, NSString
 	};
 	
 	
-	NSUrl* iconURL = [NSURL fileURLWithPath: fs.iconPath];
+	NSURL* iconURL = [NSURL fileURLWithPath: fs.iconPath];
 	NSString* userName = [[fs parameters] objectForKey: kNetFSUserParameter];
 	NSString* host = [[fs parameters] objectForKey: kNetFSHostParameter];
 	NSString* dialogText = [NSString stringWithFormat: @"Please enter network password for host %@ user %@",host, userName];
